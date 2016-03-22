@@ -1,6 +1,5 @@
 package ua.skillsup.javacourse.paintinggallery.application.impl;
 
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.skillsup.javacourse.paintinggallery.application.GallerySearchService;
 import ua.skillsup.javacourse.paintinggallery.model.gallery.PaintingGallery;
@@ -17,7 +16,6 @@ import java.util.List;
  * Created by Shine on 17.03.2016.
  */
 
-@Service
 @Transactional
 public class GallerySearchServiceImpl implements GallerySearchService{
 

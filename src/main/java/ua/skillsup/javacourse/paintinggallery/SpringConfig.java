@@ -10,6 +10,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import ua.skillsup.javacourse.paintinggallery.application.GalleryEditService;
+import ua.skillsup.javacourse.paintinggallery.application.GallerySearchService;
+import ua.skillsup.javacourse.paintinggallery.application.impl.GalleryEditServiceImpl;
+import ua.skillsup.javacourse.paintinggallery.application.impl.GallerySearchServiceImpl;
 
 import javax.sql.DataSource;
 
@@ -49,5 +53,15 @@ public class SpringConfig {
   @Bean
   public PlatformTransactionManager txManager() {
     return new HibernateTransactionManager(sessionFactory().getObject());
+  }
+
+  @Bean
+  GallerySearchService gallerySearchService() {
+    return new GallerySearchServiceImpl();
+  }
+
+  @Bean
+  GalleryEditService galleryEditService() {
+    return new GalleryEditServiceImpl();
   }
 }
