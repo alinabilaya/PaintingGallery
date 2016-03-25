@@ -15,6 +15,7 @@ import javax.inject.Inject;
  * Created by Shine on 17.03.2016.
  */
 
+
 @Transactional
 public class GalleryEditServiceImpl implements GalleryEditService{
 

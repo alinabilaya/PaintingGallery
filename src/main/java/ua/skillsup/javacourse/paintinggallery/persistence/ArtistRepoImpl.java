@@ -7,7 +7,6 @@ import ua.skillsup.javacourse.paintinggallery.model.painting.Artist;
 import ua.skillsup.javacourse.paintinggallery.model.painting.ArtistRepo;
 import ua.skillsup.javacourse.paintinggallery.model.painting.Painting;
 
-
 import javax.inject.Inject;
 import java.util.List;
 

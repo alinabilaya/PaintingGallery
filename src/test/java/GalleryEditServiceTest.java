@@ -1,14 +1,16 @@
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import ua.skillsup.javacourse.paintinggallery.SpringConfig;
 import ua.skillsup.javacourse.paintinggallery.application.GalleryEditService;
 import ua.skillsup.javacourse.paintinggallery.application.GallerySearchService;
+import ua.skillsup.javacourse.paintinggallery.config.SpringConfig;
+import ua.skillsup.javacourse.paintinggallery.config.TestDataConfig;
 import ua.skillsup.javacourse.paintinggallery.model.gallery.*;
 import ua.skillsup.javacourse.paintinggallery.model.painting.Artist;
 import ua.skillsup.javacourse.paintinggallery.model.painting.Painting;
@@ -24,7 +26,8 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringConfig.class)
+@ContextConfiguration(classes = {SpringConfig.class, TestDataConfig.class})
+@ActiveProfiles("test")
 public class GalleryEditServiceTest {
 
   @Inject
