@@ -14,28 +14,9 @@ import ua.skillsup.javacourse.paintinggallery.application.impl.GallerySearchServ
  */
 
 @Configuration
-@ComponentScan ( basePackages = {
-         "ua.skillsup.javacourse.paintinggallery.model",
-        "ua.skillsup.javacourse.paintinggallery.persistence",
-        "ua.skillsup.javacourse.paintinggallery.application",
-        }
-)
+@ComponentScan
 @EnableTransactionManagement
 public class SpringConfig {
-
-//  @Autowired
-//  SessionFactory sessionFactory;
-//
-//  @Bean
-//  public DataSource dataSource() {
-//    final HikariConfig hikariConfig = new HikariConfig();
-//    hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
-//    hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/hibernate");
-//    hikariConfig.setUsername("root");
-//    hikariConfig.setPassword("");
-//    return new HikariDataSource(hikariConfig);
-//  }
-
 
   @Bean
   GallerySearchService gallerySearchService() {

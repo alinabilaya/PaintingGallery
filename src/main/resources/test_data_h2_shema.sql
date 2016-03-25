@@ -19,12 +19,14 @@ CREATE TABLE Painting (
 );
 
 CREATE TABLE PaintingGallery (
-  id          int          AUTO_INCREMENT,
-  type        VARCHAR(255) NOT NULL,
-  owner       VARCHAR(255),
-  country     VARCHAR(255),
-  city        VARCHAR(255),
-  street      VARCHAR(255),
+  id           int          AUTO_INCREMENT,
+  type         VARCHAR(255) NOT NULL,
+  owner        VARCHAR(255),
+  country      VARCHAR(255),
+  city         VARCHAR(255),
+  street       VARCHAR(255),
+  workingHours VARCHAR(255),
+  homePage     VARCHAR(255),
   PRIMARY KEY (id)
 );
 

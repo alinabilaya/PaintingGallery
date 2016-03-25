@@ -16,7 +16,7 @@ public class SpringApp {
         new AnnotationConfigApplicationContext();
 
     appCtx.getEnvironment().setActiveProfiles("prod");
-    appCtx.register(SpringConfig.class, TestDataConfig.class, ProdDataConfig.class);
+    appCtx.register(SpringConfig.class, ProdDataConfig.class);
     appCtx.refresh();
 
     GallerySearchService gallerySearchService = appCtx.getBean(GallerySearchService.class);

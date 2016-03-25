@@ -6,13 +6,9 @@
 <hibernate-configuration>
 
     <session-factory>
-        <!--&lt;!&ndash;Database connection settings &ndash;&gt;-->
-        <!--<property name="show_sql">true</property>-->
-        <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
-        <!--<property name="connection.isolation">4</property>-->
-
+         <!--Database connection settings -->
         <property name="show_sql">true</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="connection.isolation">4</property>
     </session-factory>
 

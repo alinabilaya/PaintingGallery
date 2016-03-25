@@ -23,8 +23,7 @@ import javax.sql.DataSource;
 @ComponentScan( basePackages = {
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
-        "ua.skillsup.javacourse.paintinggallery.application",
-}
+        "ua.skillsup.javacourse.paintinggallery.application",}
 )
 @EnableTransactionManagement
 public class TestDataConfig {
@@ -41,7 +40,7 @@ public class TestDataConfig {
     final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource());
     sessionFactory.setPackagesToScan("ua.skillsup.javacourse.paintinggallery.model");
-    sessionFactory.setConfigLocation(new ClassPathResource("hibernate_spring.cfg.xml"));
+    sessionFactory.setConfigLocation(new ClassPathResource("test_data.cfg.xml"));
 
     return sessionFactory;
   }
