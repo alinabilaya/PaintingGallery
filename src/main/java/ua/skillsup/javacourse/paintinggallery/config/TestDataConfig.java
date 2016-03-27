@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @ComponentScan( basePackages = {
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
-        "ua.skillsup.javacourse.paintinggallery.application",}
+        "ua.skillsup.javacourse.paintinggallery.service",}
 )
 @EnableTransactionManagement
 public class TestDataConfig {

@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import ua.skillsup.javacourse.paintinggallery.application.GalleryEditService;
-import ua.skillsup.javacourse.paintinggallery.application.GallerySearchService;
-import ua.skillsup.javacourse.paintinggallery.application.impl.GalleryEditServiceImpl;
-import ua.skillsup.javacourse.paintinggallery.application.impl.GallerySearchServiceImpl;
+import ua.skillsup.javacourse.paintinggallery.service.GalleryEditService;
+import ua.skillsup.javacourse.paintinggallery.service.GallerySearchService;
+import ua.skillsup.javacourse.paintinggallery.service.impl.GalleryEditServiceImpl;
+import ua.skillsup.javacourse.paintinggallery.service.impl.GallerySearchServiceImpl;
 
 /**
  * Created by Shine on 18.03.16.

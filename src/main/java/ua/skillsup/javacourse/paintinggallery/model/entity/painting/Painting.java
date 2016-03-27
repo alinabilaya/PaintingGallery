@@ -1,9 +1,9 @@
-package ua.skillsup.javacourse.paintinggallery.model.painting;
+package ua.skillsup.javacourse.paintinggallery.model.entity.painting;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import ua.skillsup.javacourse.paintinggallery.model.gallery.PaintingGallery;
+import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PaintingGallery;
 
 import javax.persistence.*;
 
@@ -43,6 +43,14 @@ public class Painting {
 
   //------------------------------------------------------------------------------------------------//
 
+  public Painting() {}
+
+  public Painting(String paintingTitle, int paintingDateMade, String paintingSummary) {
+    this.title = paintingTitle;
+    this.dateMade = paintingDateMade;
+    this.summary = paintingSummary;
+  }
+
   public Long getId() { return id;  }
 
   public Artist getArtist() { return artist; }
@@ -51,15 +59,9 @@ public class Painting {
 
   public String getTitle() { return title; }
 
-  public void setTitle(String title) {  this.title = title; }
-
   public int getDateMade() { return dateMade; }
 
-  public void setDateMade(int dateMade) { this.dateMade = dateMade; }
-
   public String getSummary() { return summary; }
-
-  public void setSummary(String summary) { this.summary = summary; }
 
   public PaintingGallery getPaintingGallery() { return paintingGallery; }
 

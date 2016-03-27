@@ -1,4 +1,4 @@
-package ua.skillsup.javacourse.paintinggallery.model.gallery;
+package ua.skillsup.javacourse.paintinggallery.model.entity.gallery;
 
 import lombok.Data;
 
@@ -20,17 +20,19 @@ public class Address {
 
   //-----------------------------------------------------------------------------------------//
 
-  public String getCountry() { return country; }
+  public Address() {}
 
-  public void setCountry(String country) { this.country = country; }
+  public Address(String country, String city, String street) {
+    this.country = country;
+    this.city = city;
+    this.street = street;
+  }
+
+  public String getCountry() { return country; }
 
   public String getCity() { return city; }
 
-  public void setCity(String city) { this.city = city; }
-
   public String getStreet() { return street; }
-
-  public void setStreet(String street) { this.street = street; }
 
   @Override
   public String toString() {

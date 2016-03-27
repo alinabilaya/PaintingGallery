@@ -11,8 +11,8 @@ CREATE TABLE Painting (
   title       VARCHAR(255)  NOT NULL,
   summary     VARCHAR(255),
   dateMade    int           NOT NULL,
-  artist_id   VARCHAR(255)  NOT NULL,
-  gallery_id  VARCHAR(255),
+  artist_id   int  NOT NULL,
+  gallery_id  int,
   PRIMARY KEY (id),
   FOREIGN KEY (artist_id)   REFERENCES Artist,
   FOREIGN KEY (gallery_id)  REFERENCES PaintingGallery
@@ -25,9 +25,22 @@ CREATE TABLE PaintingGallery (
   country      VARCHAR(255),
   city         VARCHAR(255),
   street       VARCHAR(255),
-  workingHours VARCHAR(255),
   homePage     VARCHAR(255),
   PRIMARY KEY (id)
+);
+
+CREATE TABLE Schedule (
+  id            int          AUTO_INCREMENT,
+  mondayTime    VARCHAR(255),
+  tuesdayTime   VARCHAR(255),
+  wednesdayTime VARCHAR(255),
+  thursdayTime  VARCHAR(255),
+  fridayTime    VARCHAR(255),
+  saturdayTime  VARCHAR(255),
+  sundayTime    VARCHAR(255),
+  gallery_id    int NOT NULL,
+  PRIMARY KEY   (id),
+  FOREIGN KEY   (gallery_id)  REFERENCES PaintingGallery
 );
 
 

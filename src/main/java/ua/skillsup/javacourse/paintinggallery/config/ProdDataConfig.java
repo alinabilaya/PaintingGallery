@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @ComponentScan( basePackages = {
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
-        "ua.skillsup.javacourse.paintinggallery.application",}
+        "ua.skillsup.javacourse.paintinggallery.service",}
 )
 @EnableTransactionManagement
 public class ProdDataConfig {
@@ -32,7 +32,7 @@ public class ProdDataConfig {
   public DataSource dataSource() {
     final HikariConfig hikariConfig = new HikariConfig();
     hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
-    hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/hibernate");
+    hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/paintinggallery");
     hikariConfig.setUsername("root");
     hikariConfig.setPassword("");
     return new HikariDataSource(hikariConfig);

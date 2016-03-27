@@ -3,8 +3,8 @@ package ua.skillsup.javacourse.paintinggallery.persistence;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import ua.skillsup.javacourse.paintinggallery.model.painting.Painting;
-import ua.skillsup.javacourse.paintinggallery.model.painting.PaintingRepo;
+import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Painting;
+import ua.skillsup.javacourse.paintinggallery.model.repository.PaintingRepo;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -22,7 +22,7 @@ public class PaintingRepoImpl implements PaintingRepo {
   private SessionFactory sessionFactory;
 
   @Override
-  public List<Painting> findPaintingByTitle(String paintingTitle) {
+  public List<Painting> getPaintingByTitle(String paintingTitle) {
     return castList(sessionFactory.getCurrentSession()
         .createCriteria(Painting.class)
         .add(Restrictions.ilike("title", "%" + paintingTitle + "%"))
@@ -31,6 +31,18 @@ public class PaintingRepoImpl implements PaintingRepo {
 
   @Override
   public void add(Painting painting){
-    sessionFactory.getCurrentSession().save(painting);
+
+    List<Painting> list = getPaintingByTitle(painting.getTitle());
+
+    if (list.size() != 0){
+      for (Painting foundPainting : list) {
+        if (foundPainting.equals(painting)){
+          System.out.println("Such painting already exists!");
+          break;
+        }
+        sessionFactory.getCurrentSession().save(painting);
+      }
+    }
+    else sessionFactory.getCurrentSession().save(painting);
   }
 }

@@ -3,9 +3,9 @@ package ua.skillsup.javacourse.paintinggallery.persistence;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import ua.skillsup.javacourse.paintinggallery.model.painting.Artist;
-import ua.skillsup.javacourse.paintinggallery.model.painting.ArtistRepo;
-import ua.skillsup.javacourse.paintinggallery.model.painting.Painting;
+import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Artist;
+import ua.skillsup.javacourse.paintinggallery.model.repository.ArtistRepo;
+import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Painting;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -23,7 +23,7 @@ public class ArtistRepoImpl implements ArtistRepo{
   private SessionFactory sessionFactory;
 
   @Override
-  public List<Artist> findByName(String artistName) {
+  public List<Artist> getByName(String artistName) {
     return castList (sessionFactory.getCurrentSession()
         .createCriteria(Artist.class)
         .add(Restrictions.ilike("name", "%" + artistName + "%"))
@@ -37,7 +37,7 @@ public class ArtistRepoImpl implements ArtistRepo{
   }
 
   @Override
-  public List<Painting> findAllPaintingsForArtist(String artistName) {
+  public List<Painting> getAllArtistPaintings(String artistName) {
     return  castList (sessionFactory.getCurrentSession()
         .createQuery("FROM Painting p where p.artist.name =:name")
         .setParameter("name", artistName).list());
@@ -45,6 +45,17 @@ public class ArtistRepoImpl implements ArtistRepo{
 
   @Override
   public void add (Artist artist) {
-    sessionFactory.getCurrentSession().save(artist);
+    List<Artist> list = getByName(artist.getName());
+
+    if(list.size() != 0) {
+      for(Artist foundArtist: list)  {
+        if(foundArtist.equals(artist))   {
+          System.out.println("Such artist already exists!");
+          break;
+        }
+        sessionFactory.getCurrentSession().save(artist);
+      }
+    }
+    else sessionFactory.getCurrentSession().save(artist);
   }
 }
