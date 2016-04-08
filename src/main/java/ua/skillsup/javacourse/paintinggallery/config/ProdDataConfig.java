@@ -32,7 +32,7 @@ public class ProdDataConfig {
     hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
     hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/paintinggallery");
     hikariConfig.setUsername("root");
-    hikariConfig.setPassword("221155");
+    hikariConfig.setPassword("");
     return new HikariDataSource(hikariConfig);
   }
 
