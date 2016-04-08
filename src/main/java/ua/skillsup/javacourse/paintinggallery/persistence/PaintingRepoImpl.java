@@ -45,4 +45,9 @@ public class PaintingRepoImpl implements PaintingRepo {
     }
     else sessionFactory.getCurrentSession().save(painting);
   }
+
+  public List<Painting> getAllPaintings () {
+    return castList(sessionFactory.getCurrentSession()
+            .createQuery("FROM Painting").list());
+  }
 }

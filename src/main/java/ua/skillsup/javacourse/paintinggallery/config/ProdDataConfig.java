@@ -5,7 +5,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -19,12 +18,11 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@Profile("prod")
-@ComponentScan( basePackages = {
+@ComponentScan({
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
-        "ua.skillsup.javacourse.paintinggallery.service",}
-)
+        "ua.skillsup.javacourse.paintinggallery.service",
+})
 @EnableTransactionManagement
 public class ProdDataConfig {
 
@@ -34,7 +32,7 @@ public class ProdDataConfig {
     hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
     hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/paintinggallery");
     hikariConfig.setUsername("root");
-    hikariConfig.setPassword("");
+    hikariConfig.setPassword("221155");
     return new HikariDataSource(hikariConfig);
   }
 

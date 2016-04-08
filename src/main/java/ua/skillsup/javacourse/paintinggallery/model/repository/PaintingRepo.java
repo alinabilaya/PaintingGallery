@@ -11,4 +11,5 @@ public interface PaintingRepo {
 
   List<Painting> getPaintingByTitle(String paintingTitle);
   void add(Painting painting);
+  List<Painting> getAllPaintings();
 }

@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -29,8 +30,9 @@ import static org.junit.Assert.assertTrue;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ActiveProfiles(value = "test")
 @ContextConfiguration(classes = {SpringConfig.class, TestDataConfig.class})
-@ActiveProfiles("test")
 public class GalleryEditServiceTest {
 
   @Inject
@@ -149,5 +151,13 @@ public class GalleryEditServiceTest {
     Schedule gallerySchedule2 = scheduleRepo.getPublicGallerySchedule(publicGallery2);
     assertEquals(gallerySchedule, gallerySchedule2);
     txManager.commit(transaction);
+  }
+
+  @Test
+  public void testFindingAllPaintings() {
+    final List<Painting> paintings = gallerySearchService.getAllPaintings();
+    for(int i = 0; i < paintings.size(); i++) {
+    System.out.println(paintings.get(i));
+    }
   }
 }

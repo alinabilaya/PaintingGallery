@@ -43,4 +43,9 @@ public class GallerySearchServiceImpl implements GallerySearchService{
   public PaintingGallery getGalleryByPainting(String paintingTitle) {
     return paintingGalleryRepo.getGalleryByPainting(paintingTitle);
   }
+
+  @Override
+  public List<Painting> getAllPaintings() {
+    return paintingRepo.getAllPaintings();
+  }
 }

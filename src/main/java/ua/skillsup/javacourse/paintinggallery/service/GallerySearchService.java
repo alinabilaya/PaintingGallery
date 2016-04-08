@@ -14,4 +14,5 @@ public interface GallerySearchService {
   List<Artist> getArtist(String artistName);
   PaintingGallery getGalleryByPainting(String paintingTitle);
   List<Painting> getAllArtistPaintings(String artistName);
+  List<Painting> getAllPaintings();
 }

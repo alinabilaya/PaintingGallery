@@ -27,4 +27,5 @@ public class SpringConfig {
   GalleryEditService galleryEditService() {
     return new GalleryEditServiceImpl();
   }
+
 }

@@ -20,11 +20,11 @@ import javax.sql.DataSource;
 
 @Configuration
 @Profile("test")
-@ComponentScan( basePackages = {
+@ComponentScan({
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
-        "ua.skillsup.javacourse.paintinggallery.service",}
-)
+        "ua.skillsup.javacourse.paintinggallery.service",
+})
 @EnableTransactionManagement
 public class TestDataConfig {
 
