@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @Transactional
-public class GalleryEditServiceImpl implements GalleryEditService{
+public class GalleryEditServiceImpl implements GalleryEditService {
 
   @Inject
   private ArtistRepo artistRepo;
@@ -43,7 +43,7 @@ public class GalleryEditServiceImpl implements GalleryEditService{
   }
 
   @Override
-  public Painting addPainting(String paintingTitle, int paintingDateMade, String paintingSummary,
+  public Painting addPainting(String paintingTitle, String paintingDateMade, String paintingSummary,
                               String artistName, String galleryOwner) {
 
     final Artist artist = artistRepo.getByName(artistName).get(0);
@@ -78,8 +78,8 @@ public class GalleryEditServiceImpl implements GalleryEditService{
 
   @Override
   public Schedule addPublicGallerySchedule(String publicGalleryOwner, String mondayTime,
-                               String tuesdayTime, String wednesdayTime, String thursdayTime,
-                               String fridayTime, String saturdayTime, String sundayTime) {
+                                           String tuesdayTime, String wednesdayTime, String thursdayTime,
+                                           String fridayTime, String saturdayTime, String sundayTime) {
 
 
     List<Schedule> list = scheduleRepo.getScheduleByGallery(publicGalleryOwner);
@@ -92,7 +92,41 @@ public class GalleryEditServiceImpl implements GalleryEditService{
       scheduleRepo.addSchedule(schedule);
 
       return schedule;
-    }
-    else return null;
+    } else return null;
+  }
+
+  @Override
+  public Painting updatePainting(Painting painting) {
+    Painting origPainting = paintingRepo.getPaintingById(painting.getId());
+
+    origPainting.setTitle(painting.getTitle());
+    origPainting.setDateMade(painting.getDateMade());
+    origPainting.setSummary(painting.getSummary());
+    origPainting.setImage(painting.getImage());
+
+    return painting;
+  }
+
+  @Override
+  public Artist updateArtist(Artist artist) {
+    Artist originArtist = artistRepo.getById(artist.getId());
+
+    originArtist.setName(artist.getName());
+    originArtist.setCountry(artist.getCountry());
+    originArtist.setInfo(artist.getInfo());
+    originArtist.setImage(artist.getImage());
+
+    return artist;
+  }
+
+  @Override
+  public PublicGallery updateGallery(PublicGallery publicGallery) {
+    PublicGallery originGallery = (PublicGallery) paintingGalleryRepo.getById(publicGallery.getId());
+
+    originGallery.setOwner(publicGallery.getOwner());
+    originGallery.setAddress(publicGallery.getAddress());
+    originGallery.setHomePage(publicGallery.getHomePage());
+
+    return publicGallery;
   }
 }

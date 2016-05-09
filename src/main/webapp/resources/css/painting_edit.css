@@ -1,0 +1,107 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.width-setter {
+		height: auto;
+		margin:0 9px;
+	}
+
+.width-setter input {
+    width:100%;
+    height: auto;
+    padding:4px 9px 5px;
+    margin:0;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:12px;
+    line-height:14px;
+    border:0 none;
+}
+
+textarea {
+    width:100%;
+    height: 100%;
+    padding:4px 9px 5px;
+    margin:0;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:12px;
+    line-height:14px;
+    border:0 none;
+    resize: none;
+}
+
+
+body,select,textarea {
+	color: #444;
+}
+
+.edit-box {
+ 	height: auto;
+ 	width: 332px;
+ 	position: absolute;
+ 	left: 50%;
+ 	top: 250px;
+ 	margin: -130px 0 0 -166px;
+    background: gainsboro;
+    border-top: 1px solid #dde0e8;
+    border-bottom: 1px solid #dde0e8;
+    padding: 10px 20px;
+    border-radius: 7px;
+ }
+
+.label {
+	display: block;
+	font: 14px/22px Arial, Helvetica, Sans-serif;
+	margin: 10px 0 0 6px;
+}
+
+.button {
+	border-radius: 15px;
+	margin-left: 12px;
+	margin-top: 10px;
+	float: left;
+}
+
+.button input {
+    border-color: dimgray;
+    border: double 1px DimGray;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.button input:hover {
+    border-color: silver;
+    color: #34739f;
+    cursor: pointer;
+}
+
+.backButton {
+    padding: 4px 9px 5px;
+	margin-left: 195px;
+	margin-top: 35px;
+	float: left;
+	background: gainsboro;
+    border-color: dimgray;
+    border: double 1px DimGray;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.backButton:hover {
+    border-color: silver;
+    cursor: pointer;
+}
+
+.backButton a {
+    color: black;
+}
+
+.backButton a:hover {
+    color: #34739f;
+}

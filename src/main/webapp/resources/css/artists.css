@@ -1,0 +1,13 @@
+ul {
+    color: black;
+}
+
+.artists-list a {
+  color: black;
+  font-family:Merriweather,serif;
+  font-size: 13px;
+}
+
+.artists-list a:hover {
+    text-decoration:underline;
+}

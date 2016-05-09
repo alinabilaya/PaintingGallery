@@ -12,8 +12,8 @@ import javax.persistence.*;
  */
 
 @Data
-@EqualsAndHashCode(of ={"title", "dateMade", "artist", "paintingGallery"})
-@ToString(exclude = {"artist"})
+@EqualsAndHashCode(of ={"title", "artist"})
+@ToString(exclude = {"artist", "image", "summary"})
 
 @Entity
 @Table(name = "Painting")
@@ -27,14 +27,17 @@ public class Painting {
   @Column(name = "title", nullable = false)
   private String title;
 
-  @Column(name = "summary")
+  @Column(name = "summary", length = 20000)
   private String summary;
 
-  @Column(name = "dateMade", nullable = false)
-  private int dateMade;
+  @Column(name = "dateMade")
+  private String dateMade;
+
+  @Column(name = "image")
+  private String image;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "artist_id", nullable = false)
+  @JoinColumn(name = "artist_id")
   private Artist artist;
 
   @ManyToOne(fetch = FetchType.EAGER)
@@ -45,7 +48,7 @@ public class Painting {
 
   public Painting() {}
 
-  public Painting(String paintingTitle, int paintingDateMade, String paintingSummary) {
+  public Painting(String paintingTitle, String paintingDateMade, String paintingSummary) {
     this.title = paintingTitle;
     this.dateMade = paintingDateMade;
     this.summary = paintingSummary;
@@ -59,9 +62,19 @@ public class Painting {
 
   public String getTitle() { return title; }
 
-  public int getDateMade() { return dateMade; }
+  public void setTitle(String title) {this.title = title;}
+
+  public String getDateMade() { return dateMade; }
+
+  public void setDateMade(String dateMade) { this.dateMade = dateMade; }
 
   public String getSummary() { return summary; }
+
+  public void setSummary(String summary) { this.summary = summary; }
+
+  public String getImage() { return image; }
+
+  public void setImage(String image) { this.image = image; }
 
   public PaintingGallery getPaintingGallery() { return paintingGallery; }
 

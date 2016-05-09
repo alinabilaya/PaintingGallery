@@ -22,6 +22,12 @@ public class PaintingRepoImpl implements PaintingRepo {
   private SessionFactory sessionFactory;
 
   @Override
+  public Painting getPaintingById(Long id) {
+    return sessionFactory.getCurrentSession()
+            .get(Painting.class, id);
+  }
+
+  @Override
   public List<Painting> getPaintingByTitle(String paintingTitle) {
     return castList(sessionFactory.getCurrentSession()
         .createCriteria(Painting.class)

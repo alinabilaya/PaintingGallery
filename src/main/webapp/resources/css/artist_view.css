@@ -1,0 +1,52 @@
+.artist {
+min-height: 230px;
+margin-bottom: 30px;
+}
+
+.artist-name {
+  font-family: "PT Sans Narrow",sans-serif;
+  color: #202020;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.divider-text {
+margin-bottom: 15px;
+}
+
+.artist-country, .artist-paintings {
+  font-family: "PT Sans Narrow",sans-serif;
+  font-size: 12px;
+  color: #202020;
+}
+
+.artist-name a {
+    text-decoration:underline;
+}
+
+.artist-name a:hover {
+    border:0;
+    color: #34739f;
+}
+
+p {
+  font-family:Merriweather,serif;
+  font-size: 12px;
+}
+
+.col1-4 {
+  display: block;
+  width: 220px;
+  float:left;
+  margin: 13px 20px 20px 0;
+}
+
+.proj-img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.artist-info {
+
+}

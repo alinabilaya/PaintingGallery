@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
-public abstract class  PaintingGallery {
+public abstract class PaintingGallery {
 
   @Id
   @Column(name = "id", nullable = false)
@@ -23,19 +23,34 @@ public abstract class  PaintingGallery {
   @Column(name = "owner")
   protected String owner;
 
+  @Column(name = "type", insertable = false, updatable = false)
+  protected String type;
+
   @OneToMany(mappedBy = "paintingGallery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   protected Set<Painting> paintings;
 
   //--------------------------------------------------------------------------------------------------------//
 
-  public PaintingGallery() {}
+  public PaintingGallery() {
+  }
 
-  public long getId() { return id; }
+  public long getId() {
+    return id;
+  }
 
-  public String getOwner() { return owner; }
+  public String getOwner() {
+    return owner;
+  }
 
-  public Set<Painting> getPaintings() { return paintings; }
+  public void setOwner(String owner) {
+    this.owner = owner;
+  }
 
-  public void setPaintings(Set<Painting> paintings) { this.paintings = paintings; }
+  public String getType() {
+    return type;
+  }
 
+  public Set<Painting> getPaintings() {
+    return paintings;
+  }
 }

@@ -1,0 +1,13 @@
+ul {
+    color: black;
+}
+
+.museums-list a {
+  color: black;
+  font-family:Merriweather,serif;
+  font-size: 13px;
+}
+
+.museums-list a:hover {
+    text-decoration:underline;
+}

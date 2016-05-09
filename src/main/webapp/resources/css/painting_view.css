@@ -1,0 +1,92 @@
+.painting {
+  width:75%;
+  float: left;
+}
+
+.gallery {
+  border: dashed 1px DimGray;
+  text-align: center;
+  border-radius: 7px;
+  width:20%;
+  float: right;
+  margin-top: 55px;
+  margin-right: 10px;
+}
+
+#painting-title {
+  font-family: "PT Sans Narrow",sans-serif;
+  color: #202020;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+#painting-artist {
+  font-family: "PT Sans Narrow",sans-serif;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+#painting-owner {
+  font-size: 20px;
+  font-family: "PT Sans Narrow",sans-serif;
+  color: #202020;
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+
+.gallery p {
+  text-indent:0.5em;
+  word-spacing:3px;
+  font-style:italic;
+  line-height:12px;
+}
+
+#painting-owner-homePage {
+  margin-bottom: 17px;
+}
+
+#painting-owner-homePage a, .painting a {
+    text-decoration:underline;
+}
+
+#painting-owner-homePage a:hover, .painting a:hover, #painting-owner a:hover {
+    border:0;
+    color: #34739f;
+}
+
+#painting-owner a {
+    color: #202020;
+}
+
+#painting-summary {
+  font-family:Merriweather,serif;
+  font-size: 12px;
+  line-height: 1.8em;
+  margin-bottom: 10px;
+  word-spacing:3px;
+  line-height:12px;
+}
+
+.col1-4 {
+  display: block;
+  width: 220px;
+  float:left;
+  margin: 7px 20px 20px 0;
+}
+
+.proj-img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#painting-image:hover {
+ filter: alpha(Opacity=75);
+     opacity: 0.75;
+}
+
+.divider-text{
+  margin-bottom: 20px;
+}

@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface PaintingRepo {
 
+  Painting getPaintingById(Long id);
   List<Painting> getPaintingByTitle(String paintingTitle);
   void add(Painting painting);
   List<Painting> getAllPaintings();

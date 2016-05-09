@@ -13,7 +13,7 @@ public interface GalleryEditService {
 
   Artist addArtist(String artistName, String artistCountry);
 
-  Painting addPainting(String paintingTitle, int paintingDateMade,
+  Painting addPainting(String paintingTitle, String paintingDateMade,
                        String paintingSummary, String artistName, String galleryOwner);
 
   PaintingGallery addPrivateGallery(String paintingGalleryOwner);
@@ -24,4 +24,10 @@ public interface GalleryEditService {
   Schedule addPublicGallerySchedule(String publicGalleryOwner, String mondayTime,
                                     String tuesdayTime, String wednesdayTime, String thursdayTime,
                                     String fridayTime, String saturdayTime, String sundayTime);
+
+  Painting updatePainting(Painting painting);
+
+  Artist updateArtist(Artist artist);
+
+  PublicGallery updateGallery(PublicGallery publicGallery);
 }

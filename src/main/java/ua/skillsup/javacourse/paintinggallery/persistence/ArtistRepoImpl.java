@@ -58,4 +58,10 @@ public class ArtistRepoImpl implements ArtistRepo{
     }
     else sessionFactory.getCurrentSession().save(artist);
   }
+
+  @Override
+  public List<Artist> getAllArtists() {
+    return castList(sessionFactory.getCurrentSession()
+            .createQuery("FROM Artist").list());
+  }
 }

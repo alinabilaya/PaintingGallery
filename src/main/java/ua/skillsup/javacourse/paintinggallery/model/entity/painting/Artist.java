@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(of ={"name","country"})
-@ToString(exclude = "paintings")
+@ToString(exclude = {"paintings", "image", "info"})
 
 @Entity
 @Table(name = "Artist")
@@ -28,15 +28,18 @@ public class Artist {
   @Column(name = "name", nullable = false)
   private String name;
 
+  @Column(name = "image")
+  private String image;
+
+  @Column(name = "info", length = 20000)
+  private String info;
+
   @Basic(fetch = FetchType.EAGER, optional = false)
   @Column(name = "country", nullable = false)
   private String country;
 
   @OneToMany(mappedBy = "artist", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   private List<Painting> paintings;
-
-  @Version
-  private Integer version;
 
   //-------------------------------------------------------------------------------------------//
 
@@ -51,15 +54,29 @@ public class Artist {
 
   public String getCountry() { return country; }
 
+  public void setCountry(String country) {this.country = country;}
+
   public String getName() { return name; }
 
+  public void setName(String name) {this.name = name;}
+
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
+  }
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
   public List<Painting> getPaintings() { return paintings; }
-
-  public void setPaintings(List<Painting> paintings) { this.paintings = paintings; }
-
-  public Integer getVersion() { return version; }
-
-  public void setVersion(Integer version) { this.version = version; }
 
 //  @Override
 //  public String toString() {

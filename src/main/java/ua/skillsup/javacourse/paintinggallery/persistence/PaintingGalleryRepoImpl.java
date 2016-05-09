@@ -1,9 +1,11 @@
 package ua.skillsup.javacourse.paintinggallery.persistence;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PaintingGallery;
+import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PublicGallery;
 import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Painting;
 import ua.skillsup.javacourse.paintinggallery.model.repository.PaintingGalleryRepo;
 
@@ -36,6 +38,13 @@ public class PaintingGalleryRepoImpl implements PaintingGalleryRepo {
         .setParameter("n", owner).list());
   }
 
+  public List<PublicGallery> getPublicGalleryByOwner(String owner) {
+    return castList (sessionFactory.getCurrentSession()
+            .createCriteria(PublicGallery.class)
+            .add(Restrictions.ilike("owner", "%" + owner + "%"))
+            .list());
+  }
+
   @Override
   public PaintingGallery getGalleryByPainting(String paintingTitle){
     Painting painting = (Painting)sessionFactory.getCurrentSession()
@@ -59,5 +68,13 @@ public class PaintingGalleryRepoImpl implements PaintingGalleryRepo {
       }
     }
     else sessionFactory.getCurrentSession().save(paintingGallery);
+  }
+
+  @Override
+  public List<PublicGallery> getAllPublicGalleries() {
+    return castList (sessionFactory.getCurrentSession()
+            .createQuery("FROM PaintingGallery g where g.type != 'PrivateGallery'")
+            .list());
+//    or use next string ->  SELECT a FROM PaintingGallery a WHERE TYPE(a) != PrivateGallery
   }
 }

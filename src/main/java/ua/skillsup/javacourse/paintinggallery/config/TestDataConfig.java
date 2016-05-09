@@ -5,7 +5,6 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -19,7 +18,7 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@Profile("test")
+//@Profile("test")
 @ComponentScan({
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",

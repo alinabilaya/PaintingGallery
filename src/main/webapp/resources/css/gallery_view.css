@@ -1,0 +1,63 @@
+
+.gallery-info {
+    border: 1px dashed DimGray;
+    border-radius: 7px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 55px;
+    text-align: center;
+    width: 20%;
+}
+
+.gallery-info p {
+  text-indent:0.5em;
+  word-spacing:3px;
+  font-style:italic;
+  line-height:12px;
+}
+
+#title {
+    color: #000000;
+    font-family: "PT Sans Narrow",sans-serif;
+    font-size: 18px;
+    margin-bottom: 12px;
+    margin-top: 5px;
+}
+
+.gallery {
+    float: left;
+    width: 75%;
+}
+
+.gallery-owner {
+  font-family: "PT Sans Narrow",sans-serif;
+  color: #202020;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.gallery-homepage a {
+    text-decoration:underline;
+}
+
+.gallery-homepage a:hover {
+    border:0;
+    color: #34739f;
+}
+
+.col1-4 {
+  display: block;
+  width: 220px;
+  float:left;
+  margin: 13px 20px 20px 0;
+}
+
+.proj-img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.bottom-50 {
+margin-bottom: 30px;
+}

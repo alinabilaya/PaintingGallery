@@ -1,10 +1,10 @@
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -13,10 +13,13 @@ import ua.skillsup.javacourse.paintinggallery.config.TestDataConfig;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.*;
 import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Artist;
 import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Painting;
+import ua.skillsup.javacourse.paintinggallery.model.entity.security.User;
 import ua.skillsup.javacourse.paintinggallery.model.repository.PaintingGalleryRepo;
 import ua.skillsup.javacourse.paintinggallery.model.repository.ScheduleRepo;
+import ua.skillsup.javacourse.paintinggallery.model.repository.UserRepo;
 import ua.skillsup.javacourse.paintinggallery.service.GalleryEditService;
 import ua.skillsup.javacourse.paintinggallery.service.GallerySearchService;
+import ua.skillsup.javacourse.paintinggallery.service.impl.UserService;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -30,8 +33,8 @@ import static org.junit.Assert.assertTrue;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ActiveProfiles(value = "test")
+//@WebAppConfiguration
+//@ActiveProfiles(value = "test")
 @ContextConfiguration(classes = {SpringConfig.class, TestDataConfig.class})
 public class GalleryEditServiceTest {
 
@@ -40,6 +43,9 @@ public class GalleryEditServiceTest {
 
   @Inject
   private GalleryEditService galleryEditService;
+
+//  @Inject
+//  private UserService userService;
 
   @Inject
   private GallerySearchService gallerySearchService;
@@ -53,6 +59,10 @@ public class GalleryEditServiceTest {
   @Inject
   private SessionFactory sessionFactory;
 
+  @Inject
+  private UserRepo userRepo;
+
+
   @Test
   public void addArtistTest() {
     //create new artist
@@ -62,8 +72,8 @@ public class GalleryEditServiceTest {
             vanGogh.getName(),
             vanGogh.getCountry());
     //get list of all artist by name and check that only one artist has been found
-    final List<Artist> list = gallerySearchService.getArtist("Vincent van Gogh");
-    assertTrue(list.size()==1);
+    final List<Artist> list = gallerySearchService.getArtistByName("Vincent van Gogh");
+    assertTrue(list.size() == 1);
     //get this artist and check that it is the same created artist
     Artist vanGogh2 = list.get(0);
     assertEquals(vanGogh, vanGogh2);
@@ -98,20 +108,20 @@ public class GalleryEditServiceTest {
     galleryEditService.addArtist("Michelangelo", "Italy");
     galleryEditService.addPrivateGallery("PrivateCollection");
     //get artist and private gallery by name
-    Artist michelangelo = gallerySearchService.getArtist("Michelangelo").get(0);
-    PrivateGallery privateGallery = (PrivateGallery)paintingGalleryRepo.getGalleryByOwner("PrivateCollection").get(0);
-    //create new painting
-    final Painting theMusicians = new Painting("The Musiciants", 1595, "Some summary");
+    Artist michelangelo = gallerySearchService.getArtistByName("Michelangelo").get(0);
+    PrivateGallery privateGallery = (PrivateGallery) paintingGalleryRepo.getGalleryByOwner("PrivateCollection").get(0);
+    //create new painting_view.jsp
+    final Painting theMusicians = new Painting("The Musiciants", "1595", "Some summary");
     theMusicians.setArtist(michelangelo);
     theMusicians.setPaintingGallery(privateGallery);
-    //add this painting
+    //add this painting_view.jsp
     galleryEditService.addPainting(
             theMusicians.getTitle(),
             theMusicians.getDateMade(),
             theMusicians.getSummary(),
             michelangelo.getName(),
             privateGallery.getOwner());
-    //check that artist has one painting
+    //check that artist has one painting_view.jsp
     final TransactionStatus transaction = txManager.getTransaction(new DefaultTransactionDefinition());
     sessionFactory.getCurrentSession().refresh(michelangelo);
     final List<Painting> paintings = michelangelo.getPaintings();
@@ -120,7 +130,7 @@ public class GalleryEditServiceTest {
     //check also gallerySearchService
     List paintings2 = gallerySearchService.getAllArtistPaintings("Michelangelo");
     assertTrue(paintings2.size() == 1);
-    //get painting by name and check that it is the same created painting
+    //get painting_view.jsp by name and check that it is the same created painting_view.jsp
     final PaintingGallery privateGallery2 = gallerySearchService.getGalleryByPainting("The Musiciants");
     assertEquals(privateGallery, privateGallery2);
   }
@@ -136,7 +146,7 @@ public class GalleryEditServiceTest {
     final List<PaintingGallery> galleriesList = paintingGalleryRepo.getGalleryByOwner("Metropolitan Museum of Art");
     assertTrue(galleriesList.size() == 1);
     //get this gallery and check that it is the same created public gallery
-    PublicGallery publicGallery2 = (PublicGallery)galleriesList.get(0);
+    PublicGallery publicGallery2 = (PublicGallery) galleriesList.get(0);
     assertEquals(publicGallery, publicGallery2);
     //create new schedule
     final Schedule gallerySchedule = new Schedule("09:00 - 17:30", "09:00 - 21:00", "Closed",
@@ -151,13 +161,30 @@ public class GalleryEditServiceTest {
     Schedule gallerySchedule2 = scheduleRepo.getPublicGallerySchedule(publicGallery2);
     assertEquals(gallerySchedule, gallerySchedule2);
     txManager.commit(transaction);
+
+
+    List<PublicGallery> list = paintingGalleryRepo.getAllPublicGalleries();
+    assertEquals(4, list.size());
   }
 
+  private final PasswordEncoder passwordEncoder =
+          new StandardPasswordEncoder();
+
   @Test
-  public void testFindingAllPaintings() {
-    final List<Painting> paintings = gallerySearchService.getAllPaintings();
-    for(int i = 0; i < paintings.size(); i++) {
-    System.out.println(paintings.get(i));
-    }
+  public void testFindUserByName() {
+    final User admin = new User();
+    admin.setUsername("testUser");
+    admin.setPassword(passwordEncoder.encode("test123"));
+    admin.setAdmin(true);
+    admin.setEnabled(true);
+    admin.setName("testAdmin");
+    admin.setEmail("someEmail@mail.com");
+
+    userRepo.add(admin);
+
+    User foundUser = userRepo.getByName("testUser").get();
+
+    assertEquals(admin, foundUser);
   }
 }
+

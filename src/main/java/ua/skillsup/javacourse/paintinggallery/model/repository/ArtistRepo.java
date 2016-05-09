@@ -14,4 +14,5 @@ public interface ArtistRepo {
   List<Artist> getByName(String artistName);
   List<Painting> getAllArtistPaintings(String artistName);
   void add(Artist artist);
+  List<Artist> getAllArtists();
 }
