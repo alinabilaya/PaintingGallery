@@ -3,11 +3,11 @@ package ua.skillsup.javacourse.paintinggallery.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PaintingGallery;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PublicGallery;
-import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Artist;
 import ua.skillsup.javacourse.paintinggallery.service.GallerySearchService;
 
 import javax.inject.Inject;
@@ -28,19 +28,20 @@ public class GalleryController {
   GallerySearchService gallerySearchService;
 
   @RequestMapping(method = RequestMethod.GET)
-  public String getAllPublicGalleries (Map<String, Object> model) {
-    final List<PublicGallery> galleriesList = gallerySearchService.getAllPublicGalleries();
-    model.put("galleries", galleriesList);
+  public String getAllPublicGalleries (Map<String, Object> model, String q) {
+    if(q!=null) {
+      final List<PublicGallery> galleriesList = gallerySearchService.getGalleryByOwner(q);
+      model.put("galleries", galleriesList);
+      model.put("q", q);
 
-    return "galleries";
-  }
+      return "galleries";
+    }
+    else {
+      final List<PublicGallery> galleriesList = gallerySearchService.getAllPublicGalleries();
+      model.put("galleries", galleriesList);
 
-  @RequestMapping(method = RequestMethod.POST)
-  public String findGallery(Map<String, Object> model, @RequestParam String ownerLike) {
-    final List<PublicGallery> galleriesList = gallerySearchService.getGalleryByOwner(ownerLike);
-    model.put("galleries", galleriesList);
-
-    return "galleries";
+      return "galleries";
+    }
   }
 
   @RequestMapping(path = "/{owner}", method = RequestMethod.GET)

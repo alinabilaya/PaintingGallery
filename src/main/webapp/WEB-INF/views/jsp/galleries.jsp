@@ -69,8 +69,8 @@
         <span>Find museum that you need</span>
     </div>
 
-    <form action="" method="post" class="search">
-        <input type="search" name="ownerLike" class="input" placeholder="Search for..." maxlength="255" >
+    <form action="" method="get" class="search">
+        <input type="search" name="q" class="input" placeholder="Search for..." maxlength="255" value="${q}" />
         <input type="submit" class="submit" value="" >
     </form>
 

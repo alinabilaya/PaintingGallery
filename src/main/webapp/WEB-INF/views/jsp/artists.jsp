@@ -69,8 +69,8 @@
         <span>Search through all artists</span>
     </div>
 
-    <form action="" method="post" class="search">
-        <input type="search" name="nameLike" class="input" placeholder="Search for..." value="${nameLike}" maxlength="255" >
+    <form action="" method="get" class="search">
+        <input type="search" name="q" class="input" placeholder="Search for..." maxlength="255" value="${q}" />
         <input type="submit" class="submit" value="" >
     </form>
 

@@ -3,11 +3,11 @@ package ua.skillsup.javacourse.paintinggallery.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Artist;
 import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Painting;
-import ua.skillsup.javacourse.paintinggallery.service.GalleryEditService;
 import ua.skillsup.javacourse.paintinggallery.service.GallerySearchService;
 
 import javax.inject.Inject;
@@ -28,19 +28,20 @@ public class PaintingController {
   GallerySearchService gallerySearchService;
 
   @RequestMapping(method = RequestMethod.GET)
-  public String getAllPaintings(Map<String, Object> model) {
-    final List<Painting> paintingsList = gallerySearchService.getAllPaintings();
-    model.put("paintings", paintingsList);
+  public String getAllPaintings(Map<String, Object> model, String q) {
+    if(q!=null) {
+      final List<Painting> paintingsList = gallerySearchService.getPaintingByTitle(q);
+      model.put("paintings", paintingsList);
+      model.put("q", q);
 
-    return "paintings";
-  }
+      return "paintings";
+    }
+    else{
+      final List<Painting> paintingsList = gallerySearchService.getAllPaintings();
+      model.put("paintings", paintingsList);
 
-  @RequestMapping(method = RequestMethod.POST)
-  public String findPainting(Map<String, Object> model, @RequestParam String titleLike) {
-    final List<Painting> paintingsList = gallerySearchService.getPaintingByTitle(titleLike);
-    model.put("paintings", paintingsList);
-
-    return "paintings";
+      return "paintings";
+    }
   }
 
   @RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -49,5 +50,4 @@ public class PaintingController {
 
     return new ModelAndView ("painting_view", "painting", painting);
   }
-
 }
