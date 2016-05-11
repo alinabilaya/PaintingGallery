@@ -75,6 +75,5 @@ public class PaintingGalleryRepoImpl implements PaintingGalleryRepo {
     return castList (sessionFactory.getCurrentSession()
             .createQuery("FROM PaintingGallery g where g.type != 'PrivateGallery'")
             .list());
-//    or use next string ->  SELECT a FROM PaintingGallery a WHERE TYPE(a) != PrivateGallery
   }
 }

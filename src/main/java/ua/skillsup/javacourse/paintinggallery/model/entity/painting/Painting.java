@@ -80,14 +80,4 @@ public class Painting {
 
   public void setPaintingGallery(PaintingGallery paintingGallery) { this.paintingGallery = paintingGallery; }
 
-//  @Override
-//  public String toString() {
-//    return "Painting{" +
-//        "id=" + id +
-//        ", title='" + title + "\'" +
-//        ", summary='" + summary + "\'" +
-//        ", dateMade=" + dateMade +
-//        ", artist='" + artist.getName() + "\'" +
-//        "}";
-//  }
 }

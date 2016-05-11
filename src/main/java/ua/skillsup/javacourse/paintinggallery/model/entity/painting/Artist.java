@@ -78,12 +78,4 @@ public class Artist {
 
   public List<Painting> getPaintings() { return paintings; }
 
-//  @Override
-//  public String toString() {
-//    return "Artist{" +
-//        "id=" + id +
-//        ", name=" + name +
-//        ", country=" + country +
-//        "}";
-//  }
 }

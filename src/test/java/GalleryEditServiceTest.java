@@ -19,7 +19,6 @@ import ua.skillsup.javacourse.paintinggallery.model.repository.ScheduleRepo;
 import ua.skillsup.javacourse.paintinggallery.model.repository.UserRepo;
 import ua.skillsup.javacourse.paintinggallery.service.GalleryEditService;
 import ua.skillsup.javacourse.paintinggallery.service.GallerySearchService;
-import ua.skillsup.javacourse.paintinggallery.service.impl.UserService;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -33,8 +32,6 @@ import static org.junit.Assert.assertTrue;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@WebAppConfiguration
-//@ActiveProfiles(value = "test")
 @ContextConfiguration(classes = {SpringConfig.class, TestDataConfig.class})
 public class GalleryEditServiceTest {
 
@@ -43,9 +40,6 @@ public class GalleryEditServiceTest {
 
   @Inject
   private GalleryEditService galleryEditService;
-
-//  @Inject
-//  private UserService userService;
 
   @Inject
   private GallerySearchService gallerySearchService;
@@ -66,25 +60,25 @@ public class GalleryEditServiceTest {
   @Test
   public void addArtistTest() {
     //create new artist
-    final Artist vanGogh = new Artist("Vincent van Gogh", "Holland");
+    final Artist artist = new Artist("Artist", "Poland");
     //add artist
     galleryEditService.addArtist(
-            vanGogh.getName(),
-            vanGogh.getCountry());
+            artist.getName(),
+            artist.getCountry());
     //get list of all artist by name and check that only one artist has been found
-    final List<Artist> list = gallerySearchService.getArtistByName("Vincent van Gogh");
-    assertTrue(list.size() == 1);
+    final List<Artist> artistList = gallerySearchService.getArtistByName("Artist");
+    assertTrue(artistList.size() == 1);
     //get this artist and check that it is the same created artist
-    Artist vanGogh2 = list.get(0);
-    assertEquals(vanGogh, vanGogh2);
+    Artist artist1 = artistList.get(0);
+    assertEquals(artist, artist1);
     //check that artist has no paintings
     final TransactionStatus transaction = txManager.getTransaction(new DefaultTransactionDefinition());
-    sessionFactory.getCurrentSession().refresh(vanGogh2);
-    List artistPaintings = vanGogh2.getPaintings();
+    sessionFactory.getCurrentSession().refresh(artist1);
+    List artistPaintings = artist1.getPaintings();
     assertTrue(artistPaintings.size() == 0);
     txManager.commit(transaction);
     //check also gallerySearchService
-    assertTrue(gallerySearchService.getAllArtistPaintings("Vincent van Gogh").size() == 0);
+    assertTrue(gallerySearchService.getAllArtistPaintings("Artist").size() == 0);
   }
 
   @Test
@@ -164,7 +158,7 @@ public class GalleryEditServiceTest {
 
 
     List<PublicGallery> list = paintingGalleryRepo.getAllPublicGalleries();
-    assertEquals(4, list.size());
+    assertEquals(5, list.size());
   }
 
   private final PasswordEncoder passwordEncoder =

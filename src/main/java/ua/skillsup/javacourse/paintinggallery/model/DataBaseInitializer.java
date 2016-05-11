@@ -150,7 +150,7 @@ public class DataBaseInitializer implements ApplicationListener<ContextRefreshed
     /*creation of paintings*/
 
     final Painting ivanTheTerriblePainting = new Painting("Ivan the Terrible and His Son Ivan", "1885", null);
-    ivanTheTerriblePainting.setSummary("");
+    ivanTheTerriblePainting.setSummary("Although Repin strayed away from painting historical episodes, he completed Ivan the Terrible and His Son Ivan in the genre. This painting depicts the historical 16th century story of Ivan the Terrible mortally wounding his son in Ivan in a fit of rage. By far the most psychologically intense of Repin’s paintings, the Emperor’s face is fraught with terror, as his son lay quietly dying in his arms, blood dripping down the side of his face, a single tear on his cheek. Repin began thinking about painting this historical episode after the assassination of Alexander II. In an attempt to recall other bloody episodes of Russian history, he painted this piece as an expression of his rejection of violence and bloodshed.");
     ivanTheTerriblePainting.setArtist(artistRepo.getByName(repin.getName()).get(0));
     ivanTheTerriblePainting.setPaintingGallery(tretyakovGallery);
     ivanTheTerriblePainting.setImage("/resources/images/paintings/Ilja_Jefimowitsch_Repin_-_ivan_the_terrible_and_his_son_ivan.jpg");

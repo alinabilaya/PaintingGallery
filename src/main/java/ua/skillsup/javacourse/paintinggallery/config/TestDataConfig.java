@@ -18,7 +18,6 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-//@Profile("test")
 @ComponentScan({
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
