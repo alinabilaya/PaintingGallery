@@ -30,6 +30,14 @@
 }
 
 #painting-owner {
+  font-size: 18px;
+  font-family: "PT Sans Narrow",sans-serif;
+  color: #202020;
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+
+#painting-location {
   font-size: 20px;
   font-family: "PT Sans Narrow",sans-serif;
   color: #202020;
@@ -48,11 +56,11 @@
   margin-bottom: 17px;
 }
 
-#painting-owner-homePage a, .painting a {
+.painting a, #painting-owner a {
     text-decoration:underline;
 }
 
-#painting-owner-homePage a:hover, .painting a:hover, #painting-owner a:hover {
+.painting a:hover, #painting-owner a:hover {
     border:0;
     color: #34739f;
 }

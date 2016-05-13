@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.Address;
+import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PrivateGallery;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PublicGallery;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.Schedule;
 import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Artist;
@@ -204,6 +205,17 @@ public class DataBaseInitializer implements ApplicationListener<ContextRefreshed
     theChurch.setPaintingGallery(museumDOrsay);
     theChurch.setImage("/resources/images/paintings/The_Church_in_Auvers-sur-Oise.jpg");
     paintingRepo.add(theChurch);
+
+
+/*    for example, painting located in private collection*/
+    final PrivateGallery privateGallery = new PrivateGallery("Private collection");
+    paintingGalleryRepo.addPaintingGallery(privateGallery);
+    final Painting sunflowers = new Painting("Sunflowers", "1888", null);
+    sunflowers.setArtist(gogh);
+    sunflowers.setSummary("Sunflowers (original title, in French: Tournesols) are the subject of two series of still life paintings by the Dutch painter Vincent van Gogh. The earlier series executed in Paris in 1887, depicts the flowers lying on the ground, while the second set executed a year later in Arles shows bouquets of sunflowers in a vase. In the artist's mind both sets were linked by the name of his friend Paul Gauguin, who acquired two of the Paris versions. About eight months later Van Gogh hoped to welcome and to impress Gauguin again with Sunflowers, now part of the painted Décoration for the Yellow House that he prepared for the guestroom of his home in Arles, where Gauguin was supposed to stay. After Gauguin's departure, Van Gogh imagined the two major versions as wings of the Berceuse Triptych, and finally he included them in his Les XX in Bruxelles exhibit");
+    sunflowers.setPaintingGallery(privateGallery);
+    sunflowers.setImage("/resources/images/paintings/sunflowers.jpg");
+    paintingRepo.add(sunflowers);
   }
 
   /*creation of users*/

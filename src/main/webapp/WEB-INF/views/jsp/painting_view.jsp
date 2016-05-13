@@ -86,11 +86,18 @@
 </div>
 
 <div class="gallery">
-    <div id=painting-owner> <a href="/galleries/${painting.paintingGallery.owner}">${painting.paintingGallery.owner}</a> </div>
+
+    <div id="painting-location"> Location: </div>
+    <div id="painting-owner">
+        <c:if test="${painting.paintingGallery.type=="PublicGallery"}">
+        <a href="/galleries/${painting.paintingGallery.owner}">
+        </c:if>
+        ${painting.paintingGallery.owner}</a>
+    </div>
 
          <c:if test="${painting.paintingGallery.type=="PublicGallery"}">
-            <div id=painting-owner-homePage> <a href= "http://${painting.paintingGallery.homePage}/" target="_blank">${painting.paintingGallery.homePage}</a> </div>
-            <div id=painting-owner-schedule>
+
+            <div id="painting-owner-schedule">
                 <p>Monday: ${painting.paintingGallery.schedule.mondayTime} </p>
                 <p>Tuesday: ${painting.paintingGallery.schedule.tuesdayTime} </p>
                 <p>Wednesday: ${painting.paintingGallery.schedule.wednesdayTime} </p>

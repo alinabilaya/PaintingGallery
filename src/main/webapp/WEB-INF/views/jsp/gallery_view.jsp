@@ -17,7 +17,7 @@
        <!-- description and prettyPhoto-->
    	    <link rel="stylesheet" href="/resources/css/shortcodes.css" type="text/css" media="screen">
    	    <!-- most popular paintings -->
-	<link rel="stylesheet" href="/resources/js/pretty/prettyPhoto.css" type="text/css" media="screen">
+	    <link rel="stylesheet" href="/resources/js/pretty/prettyPhoto.css" type="text/css" media="screen">
 
    	    <!--[if IE 7]><link rel="stylesheet" href="/resources/css/ie7.css" type="text/css" /><![endif]-->
     </head>
@@ -70,9 +70,6 @@
           <div class="gallery-owner">
             ${gallery.owner}
           </div>
-          <div class="gallery-homepage">
-            <a href= "http://${gallery.homePage}" target="_blank">${gallery.homePage}</a>
-          </div>
 
             <li class="col1-4">
                 <div class="project">
@@ -98,6 +95,7 @@
         <div class="gallery-info">
            <c:if test="${gallery.type=="PublicGallery"}">
               <div id="title">Address:</div>
+              <p> <a href= "http://${gallery.homePage}" target="_blank">${gallery.homePage}</a> </p>
               <p>Country: ${gallery.address.country}</p>
               <p>City: ${gallery.address.city}</p>
               <p>Street: ${gallery.address.street}</p>
@@ -119,14 +117,6 @@
            <a href="#" class="totop"></a>
        </div>
 
-         <script type="text/javascript" src="/resources/js/jquery-1.7.1.min.js">
-       </script>
-        <script type="text/javascript" src="/resources/js/scrollTo/jquery.scrollTo-min.js">
-       </script>
-        <script type="text/javascript" src="/resources/js/column-height.js">
-       </script>
-        <script type="text/javascript" src="/resources/js/custom.js">
-       </script>
    	<script type="text/javascript" src="/resources/js/jquery-1.7.1.min.js">
 </script>
 	<script type="text/javascript" src="/resources/js/jquery.effects.core.min.js">
@@ -143,6 +133,7 @@
 </script>
 	<script type="text/javascript" src="/resources/js/custom.js">
 </script>
+
   </body>
 
 </html>

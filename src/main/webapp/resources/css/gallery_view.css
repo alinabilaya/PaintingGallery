@@ -37,11 +37,11 @@
   margin-bottom: 12px;
 }
 
-.gallery-homepage a {
+.gallery-info a {
     text-decoration:underline;
 }
 
-.gallery-homepage a:hover {
+.gallery-info a:hover {
     border:0;
     color: #34739f;
 }

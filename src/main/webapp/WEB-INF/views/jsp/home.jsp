@@ -87,7 +87,7 @@
 
 <!-- MOST POPULAR PAINTINGS PART -->
             <div class="divider-text bottom-50">
-                <span>Most popular paintings</span>
+                <span>Random set of paintings</span>
             </div>
 
             <ul id="portfolio" class="inner-960 bottom-15 clearfix">

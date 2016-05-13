@@ -23,22 +23,22 @@ public class HomeController {
   @Inject
   GallerySearchService gallerySearchService;
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String showHome(Map<String, Object> model, Locale locale) {
+  @RequestMapping(path = "/", method = RequestMethod.GET)
+  public String showHome(Map<String, Object> model, Locale locale) {
 
-      logger.info("Welcome home! The client locale is {}.", locale);
+    logger.info("Welcome home! The client locale is {}.", locale);
 
-      final List<Painting> paintingsList = gallerySearchService.getAllPaintings();
+    final List<Painting> paintingsList = gallerySearchService.getAllPaintings();
 
-      final List<Painting> paintings = new ArrayList<>();
+    final List<Painting> paintings = new ArrayList<>();
 
-      Random rand = new Random();
-      for (int i = 0; i < 8; i++) {
-        int n = rand.nextInt(paintingsList.size());
-        paintings.add(paintingsList.get(n));
-      }
+    Random rand = new Random();
+    for (int i = 0; i < 4; i++) {
+      int n = rand.nextInt(paintingsList.size());
+      paintings.add(paintingsList.get(n));
+    }
 
-      model.put("paintings", paintings);
+    model.put("paintings", paintings);
 
-      return "home"; }
-  }
+    return "home"; }
+}
