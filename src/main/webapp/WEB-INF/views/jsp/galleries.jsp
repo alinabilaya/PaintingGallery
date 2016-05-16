@@ -77,7 +77,7 @@
     <div class="museums-list">
       <c:forEach var="gallery" items="${galleries}">
           <ul type="square">
-          <li> <a href="/galleries/${gallery.owner}">${gallery.owner}</a></li>
+          <li> <a href="/galleries/${gallery.id}">${gallery.owner}</a></li>
           </ul>
       </c:forEach>
     </div>

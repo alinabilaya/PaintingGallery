@@ -90,7 +90,7 @@
     <div id="painting-location"> Location: </div>
     <div id="painting-owner">
         <c:if test="${painting.paintingGallery.type=="PublicGallery"}">
-        <a href="/galleries/${painting.paintingGallery.owner}">
+        <a href="/galleries/${painting.paintingGallery.id}">
         </c:if>
         ${painting.paintingGallery.owner}</a>
     </div>

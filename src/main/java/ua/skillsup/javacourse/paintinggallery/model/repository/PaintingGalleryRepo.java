@@ -15,5 +15,5 @@ public interface PaintingGalleryRepo {
   PaintingGallery getGalleryByPainting(String paintingTitle);
   void addPaintingGallery(PaintingGallery paintingGallery);
   List<PublicGallery> getAllPublicGalleries();
-  List<PublicGallery> getPublicGalleryByOwner(String owner);
+  List<PublicGallery> searchForPublicGalleryByOwner(String owner);
 }

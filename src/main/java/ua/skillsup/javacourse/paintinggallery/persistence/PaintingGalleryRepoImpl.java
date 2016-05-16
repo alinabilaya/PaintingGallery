@@ -19,7 +19,7 @@ import static ua.skillsup.javacourse.paintinggallery.persistence.Util.castList;
  */
 
 @Repository
-@Transactional
+
 public class PaintingGalleryRepoImpl implements PaintingGalleryRepo {
 
   @Inject
@@ -32,13 +32,14 @@ public class PaintingGalleryRepoImpl implements PaintingGalleryRepo {
   }
 
   @Override
+  @Transactional
   public List<PaintingGallery> getGalleryByOwner(String owner) {
     return castList (sessionFactory.getCurrentSession()
         .createQuery("FROM PaintingGallery p where p.owner =:n")
         .setParameter("n", owner).list());
   }
 
-  public List<PublicGallery> getPublicGalleryByOwner(String owner) {
+  public List<PublicGallery> searchForPublicGalleryByOwner(String owner) {
     return castList (sessionFactory.getCurrentSession()
             .createCriteria(PublicGallery.class)
             .add(Restrictions.ilike("owner", "%" + owner + "%"))

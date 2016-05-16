@@ -76,7 +76,11 @@ public class GallerySearchServiceImpl implements GallerySearchService {
   }
 
   @Override
-  public List<PublicGallery> getGalleryByOwner(String owner) {
-    return paintingGalleryRepo.getPublicGalleryByOwner(owner);
+  public List<PublicGallery> searchPublicGalleryByOwner(String owner) {
+    return paintingGalleryRepo.searchForPublicGalleryByOwner(owner);
+  }
+
+  public PaintingGallery getGalleryById(Long id) {
+    return paintingGalleryRepo.getById(id);
   }
 }

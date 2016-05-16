@@ -137,7 +137,7 @@ public class GalleryEditServiceTest {
     //add this gallery
     galleryEditService.addPublicGallery(publicGallery.getOwner(), address.getCountry(), address.getCity(), null, publicGallery.getHomePage());
     //find list of all galleries by name and check that only one gallery has been found
-    final List<PaintingGallery> galleriesList = paintingGalleryRepo.getGalleryByOwner("Metropolitan Museum of Art");
+    final List<PublicGallery> galleriesList = gallerySearchService.searchPublicGalleryByOwner("Metropolitan Museum of Art");
     assertTrue(galleriesList.size() == 1);
     //get this gallery and check that it is the same created public gallery
     PublicGallery publicGallery2 = (PublicGallery) galleriesList.get(0);
@@ -156,8 +156,7 @@ public class GalleryEditServiceTest {
     assertEquals(gallerySchedule, gallerySchedule2);
     txManager.commit(transaction);
 
-
-    List<PublicGallery> list = paintingGalleryRepo.getAllPublicGalleries();
+    List<PublicGallery> list = gallerySearchService.getAllPublicGalleries();
     assertEquals(5, list.size());
   }
 

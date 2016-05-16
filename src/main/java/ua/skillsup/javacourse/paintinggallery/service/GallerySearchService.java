@@ -21,5 +21,6 @@ public interface GallerySearchService {
   List<Painting> getAllPaintings();
   List<Artist> getAllArtists();
   List<PublicGallery> getAllPublicGalleries();
-  List<PublicGallery> getGalleryByOwner(String owner);
+  List<PublicGallery> searchPublicGalleryByOwner(String owner);
+  PaintingGallery getGalleryById(Long id);
 }

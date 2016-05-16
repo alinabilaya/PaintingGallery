@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PaintingGallery;
 import ua.skillsup.javacourse.paintinggallery.model.entity.gallery.PublicGallery;
 import ua.skillsup.javacourse.paintinggallery.service.GallerySearchService;
 
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Shine on 16.04.2016.
@@ -30,7 +32,7 @@ public class GalleryController {
   @RequestMapping(method = RequestMethod.GET)
   public String getAllPublicGalleries (Map<String, Object> model, String q) {
     if(q!=null) {
-      final List<PublicGallery> galleriesList = gallerySearchService.getGalleryByOwner(q);
+      final List<PublicGallery> galleriesList = gallerySearchService.searchPublicGalleryByOwner(q);
       model.put("galleries", galleriesList);
       model.put("q", q);
 
@@ -44,9 +46,9 @@ public class GalleryController {
     }
   }
 
-  @RequestMapping(path = "/{owner}", method = RequestMethod.GET)
-  public ModelAndView getPublicGallery(@PathVariable("owner") String owner) {
-    final PublicGallery gallery = (PublicGallery)gallerySearchService.getGalleryByOwner(owner).get(0);
+  @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+  public ModelAndView getPublicGallery(@PathVariable("id") Long id) {
+    final PublicGallery gallery = (PublicGallery)gallerySearchService.getGalleryById(id);
 
     return new ModelAndView ("gallery_view", "gallery", gallery);
   }
