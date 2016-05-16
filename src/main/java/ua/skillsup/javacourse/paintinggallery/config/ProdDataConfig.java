@@ -19,34 +19,38 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@Profile("default")
+@Profile("prod")
 @ComponentScan({
         "ua.skillsup.javacourse.paintinggallery.model",
         "ua.skillsup.javacourse.paintinggallery.persistence",
         "ua.skillsup.javacourse.paintinggallery.service",
 })
 @EnableTransactionManagement
-public class TestDataConfig {
+public class ProdDataConfig {
 
-  @Bean
-  public DataSource dataSource() {
-    final HikariConfig hikariConfig = new HikariConfig();
-    hikariConfig.setJdbcUrl("jdbc:h2:mem:books_db;DB_CLOSE_DELAY=-1");
-    return new HikariDataSource(hikariConfig);
-  }
 
-  @Bean
-  public LocalSessionFactoryBean sessionFactory() {
-    final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-    sessionFactory.setDataSource(dataSource());
-    sessionFactory.setPackagesToScan("ua.skillsup.javacourse.paintinggallery.model");
-    sessionFactory.setConfigLocation(new ClassPathResource("test_data.cfg.xml"));
+    @Bean
+    public DataSource dataSource() {
+        final HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
+        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/paintinggallery");
+        hikariConfig.setUsername("root");
+        hikariConfig.setPassword("123");
+        return new HikariDataSource(hikariConfig);
+    }
 
-    return sessionFactory;
-  }
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("ua.skillsup.javacourse.paintinggallery.model");
+        sessionFactory.setConfigLocation(new ClassPathResource("prod_data.cfg.xml"));
 
-  @Bean
-  public PlatformTransactionManager txManager() {
-    return new HibernateTransactionManager(sessionFactory().getObject());
-  }
+        return sessionFactory;
+    }
+
+    @Bean
+    public PlatformTransactionManager txManager() {
+        return new HibernateTransactionManager(sessionFactory().getObject());
+    }
 }

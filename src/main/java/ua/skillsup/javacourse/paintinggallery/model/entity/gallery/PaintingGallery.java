@@ -18,16 +18,13 @@ public abstract class PaintingGallery {
   @Id
   @Column(name = "id", nullable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  protected long id;
+  protected Long id;
 
   @Column(name = "owner")
   protected String owner;
 
   @Column(name = "type", insertable = false, updatable = false)
   protected String type;
-
-  @OneToMany(mappedBy = "paintingGallery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  protected Set<Painting> paintings;
 
   //--------------------------------------------------------------------------------------------------------//
 
@@ -48,9 +45,5 @@ public abstract class PaintingGallery {
 
   public String getType() {
     return type;
-  }
-
-  public Set<Painting> getPaintings() {
-    return paintings;
   }
 }

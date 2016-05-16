@@ -9,12 +9,12 @@ import javax.persistence.Entity;
  * Created by Shine on 12.03.2016.
  */
 @Data
-@EqualsAndHashCode(of = {"owner", "type"})
-
+@EqualsAndHashCode(of = {"owner"})
 @Entity
 public class PrivateGallery extends PaintingGallery {
 
-  public PrivateGallery() {}
+  public PrivateGallery() {
+  }
 
   public PrivateGallery(String owner) {
     this.owner = owner;

@@ -24,7 +24,6 @@ public class Artist {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Basic(fetch = FetchType.EAGER, optional = false)
   @Column(name = "name", nullable = false)
   private String name;
 

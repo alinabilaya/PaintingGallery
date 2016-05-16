@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan("ua.skillsup.javacourse.paintinggallery.web")
 @EnableWebMvc
-@Import({SpringConfig.class, TestDataConfig.class, SpringSecurityConfig.class})
+@Import({SpringConfig.class, TestDataConfig.class, ProdDataConfig.class, SpringSecurityConfig.class})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
   @Override

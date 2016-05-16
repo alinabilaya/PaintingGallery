@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode(of = {"mondayTime", "tuesdayTime", "wednesdayTime", "thursdayTime", "fridayTime",
 "saturdayTime", "sundayTime"})
-@ToString(exclude = {"publicGallery", "id"})
+@ToString(exclude = {"publicGallery"})
 
 @Entity
 @Table(name = "Schedule")

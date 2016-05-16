@@ -3,10 +3,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import ua.skillsup.javacourse.paintinggallery.config.SpringConfig;
 import ua.skillsup.javacourse.paintinggallery.config.TestDataConfig;
@@ -33,6 +36,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {SpringConfig.class, TestDataConfig.class})
+//@ActiveProfiles(value = "test")
 public class GalleryEditServiceTest {
 
   @Inject
@@ -82,18 +86,16 @@ public class GalleryEditServiceTest {
   }
 
   @Test
+  @Transactional
   public void addPrivateGalleryTest() {
     //create new private gallery
     final PrivateGallery privateGallery = new PrivateGallery("ownerOfPrivateCollection");
     //add this gallery
-    galleryEditService.addPrivateGallery(
-            privateGallery.getOwner());
+    galleryEditService.addPrivateGallery(privateGallery.getOwner());
     //get list off all galleries by name and check that only one private gallery has been found
     List list = paintingGalleryRepo.getGalleryByOwner("ownerOfPrivateCollection");
+    System.out.println("\n" + list.get(0));
     assertTrue(list.size() == 1);
-    //get this gallery and check that it is the same created private gallery
-    PrivateGallery privateGallery2 = (PrivateGallery) list.get(0);
-    assertEquals(privateGallery, privateGallery2);
   }
 
   @Test
@@ -158,7 +160,7 @@ public class GalleryEditServiceTest {
 
     List<PublicGallery> list = gallerySearchService.getAllPublicGalleries();
     assertEquals(5, list.size());
-  }
+}
 
   private final PasswordEncoder passwordEncoder =
           new StandardPasswordEncoder();
