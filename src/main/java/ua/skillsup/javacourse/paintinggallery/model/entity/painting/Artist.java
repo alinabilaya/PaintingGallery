@@ -34,7 +34,6 @@ public class Artist {
   @Column(name = "info", length = 20000)
   private String info;
 
-  @Basic(fetch = FetchType.EAGER, optional = false)
   @Column(name = "country", nullable = false)
   private String country;
 

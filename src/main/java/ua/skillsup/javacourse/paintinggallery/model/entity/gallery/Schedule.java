@@ -24,25 +24,25 @@ public class Schedule {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column
+  @Column (name = "mondayTime")
   private String mondayTime;
 
-  @Column
+  @Column (name = "tuesdayTime")
   private String tuesdayTime;
 
-  @Column
+  @Column (name = "wednesdayTime")
   private String wednesdayTime;
 
-  @Column
+  @Column (name = "thursdayTime")
   private String thursdayTime;
 
-  @Column
+  @Column (name = "fridayTime")
   private String fridayTime;
 
-  @Column
+  @Column (name = "saturdayTime")
   private String saturdayTime;
 
-  @Column
+  @Column (name = "sundayTime")
   private String sundayTime;
 
   @OneToOne(fetch = FetchType.EAGER)

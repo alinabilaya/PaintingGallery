@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -30,33 +27,34 @@ import static java.util.Collections.unmodifiableSet;
 public class User {
 
   @Id
-  @GeneratedValue
+  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @NotNull
   @Size(min = 1, max = 255)
-  @Column
+  @Column(name = "name")
   private String name;
 
   @Size(max = 255)
   @Pattern(regexp = "^.+@.+\\..+$" )
-  @Column
+  @Column(name = "email")
   private String email;
 
   @NotNull
   @Size(min = 1, max = 255)
-  @Column(nullable = false, unique = true)
+  @Column(name = "username", nullable = false, unique = true)
   private String username;
 
   @NotNull
   @Size(min = 5, max = 255)
-  @Column(nullable = false)
+  @Column(name = "password", nullable = false)
   private String password;
 
-  @Column(nullable = false)
+  @Column(name = "enabled", nullable = false)
   private boolean enabled;
 
-  @Column(nullable = false)
+  @Column(name = "admin", nullable = false)
   private boolean admin;
 
   public Set<Role> getRoles() {
