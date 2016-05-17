@@ -61,7 +61,7 @@ public class PaintingGalleryRepoImpl implements PaintingGalleryRepo {
 
     if (list.size() != 0){
       for (PaintingGallery foundGallery : list) {
-        if (foundGallery.equals(paintingGallery)){
+        if (foundGallery.equals(paintingGallery)&&(foundGallery.getType()=="PublicGallery")){
           System.out.println("Such gallery already exists!");
           break;
         }

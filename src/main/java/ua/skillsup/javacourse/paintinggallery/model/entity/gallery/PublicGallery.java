@@ -3,10 +3,8 @@ package ua.skillsup.javacourse.paintinggallery.model.entity.gallery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import ua.skillsup.javacourse.paintinggallery.model.entity.painting.Painting;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by Shine on 12.03.2016.
@@ -33,9 +31,6 @@ public class PublicGallery extends PaintingGallery {
 
   @OneToOne(mappedBy = "publicGallery", cascade = CascadeType.ALL)
   private Schedule schedule;
-
-  @OneToMany(mappedBy = "paintingGallery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  protected Set<Painting> paintings;
 
   //---------------------------------------------------------------------------------------------//
 
@@ -86,9 +81,5 @@ public class PublicGallery extends PaintingGallery {
 
   public void setSchedule(Schedule schedule) {
     this.schedule = schedule;
-  }
-
-  public Set<Painting> getPaintings() {
-    return paintings;
   }
 }

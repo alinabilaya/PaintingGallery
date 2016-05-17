@@ -26,6 +26,9 @@ public abstract class PaintingGallery {
   @Column(name = "type", insertable = false, updatable = false)
   protected String type;
 
+  @OneToMany(mappedBy = "paintingGallery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  protected Set<Painting> paintings;
+
   //--------------------------------------------------------------------------------------------------------//
 
   public PaintingGallery() {
@@ -45,5 +48,9 @@ public abstract class PaintingGallery {
 
   public String getType() {
     return type;
+  }
+
+  public Set<Painting> getPaintings() {
+    return paintings;
   }
 }

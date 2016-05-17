@@ -3,10 +3,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -106,18 +104,18 @@ public class GalleryEditServiceTest {
     //get artist and private gallery by name
     Artist michelangelo = gallerySearchService.getArtistByName("Michelangelo").get(0);
     PrivateGallery privateGallery = (PrivateGallery) paintingGalleryRepo.getGalleryByOwner("PrivateCollection").get(0);
-    //create new painting_view.jsp
+    //create new painting
     final Painting theMusicians = new Painting("The Musiciants", "1595", "Some summary");
     theMusicians.setArtist(michelangelo);
     theMusicians.setPaintingGallery(privateGallery);
-    //add this painting_view.jsp
+    //add this painting
     galleryEditService.addPainting(
             theMusicians.getTitle(),
             theMusicians.getDateMade(),
             theMusicians.getSummary(),
             michelangelo.getName(),
             privateGallery.getOwner());
-    //check that artist has one painting_view.jsp
+    //check that artist has one painting
     final TransactionStatus transaction = txManager.getTransaction(new DefaultTransactionDefinition());
     sessionFactory.getCurrentSession().refresh(michelangelo);
     final List<Painting> paintings = michelangelo.getPaintings();
@@ -126,9 +124,13 @@ public class GalleryEditServiceTest {
     //check also gallerySearchService
     List paintings2 = gallerySearchService.getAllArtistPaintings("Michelangelo");
     assertTrue(paintings2.size() == 1);
-    //get painting_view.jsp by name and check that it is the same created painting_view.jsp
+    //get painting by name and check that it is the same created painting
     final PaintingGallery privateGallery2 = gallerySearchService.getGalleryByPainting("The Musiciants");
     assertEquals(privateGallery, privateGallery2);
+    //check that two private galleries with the same name can be created
+    galleryEditService.addPrivateGallery("PrivateCollection");
+    List test = paintingGalleryRepo.getGalleryByOwner("PrivateCollection");
+    assertTrue(test.size() == 2);
   }
 
   @Test
